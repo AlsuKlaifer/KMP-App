@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
+		151D97032BEFCCE80098CB66 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D97022BEFCCE80098CB66 /* NewsView.swift */; };
+		151D97052BEFF85D0098CB66 /* AtricleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D97042BEFF85D0098CB66 /* AtricleView.swift */; };
+		151D97072BF108630098CB66 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D97062BF108630098CB66 /* CategoryView.swift */; };
+		151D970A2BF121CF0098CB66 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151D97092BF121CF0098CB66 /* ProfileView.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		7A5AFE62F189B46392E8E5B5 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28EAB7BD3B3B7C1021701EC1 /* Pods_iosApp.framework */; };
@@ -18,6 +22,10 @@
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0E36C1F4EBB8E2BEAF1690ED /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
+		151D97022BEFCCE80098CB66 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		151D97042BEFF85D0098CB66 /* AtricleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtricleView.swift; sourceTree = "<group>"; };
+		151D97062BF108630098CB66 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		151D97092BF121CF0098CB66 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		28EAB7BD3B3B7C1021701EC1 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,10 +76,14 @@
 			isa = PBXGroup;
 			children = (
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
+				151D97022BEFCCE80098CB66 /* NewsView.swift */,
 				7555FF82242A565900829871 /* ContentView.swift */,
+				151D97042BEFF85D0098CB66 /* AtricleView.swift */,
+				151D97062BF108630098CB66 /* CategoryView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
+				151D97092BF121CF0098CB66 /* ProfileView.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -82,7 +94,6 @@
 				0E36C1F4EBB8E2BEAF1690ED /* Pods-iosApp.debug.xcconfig */,
 				CDCD920E02864DF0FDDB06F1 /* Pods-iosApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -190,8 +201,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				151D97032BEFCCE80098CB66 /* NewsView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				151D97052BEFF85D0098CB66 /* AtricleView.swift in Sources */,
+				151D970A2BF121CF0098CB66 /* ProfileView.swift in Sources */,
+				151D97072BF108630098CB66 /* CategoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
