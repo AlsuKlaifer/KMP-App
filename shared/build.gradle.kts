@@ -66,8 +66,10 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-            implementation(libs.coil)
-            implementation(libs.coilCompose)
+//            implementation(libs.coil)
+//            implementation(libs.coilCompose)
+            implementation(libs.glide.compose)
+            implementation(libs.composeShimmer)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.ios)

@@ -13,7 +13,7 @@ internal class NewsServiceImpl(
     override suspend fun getTopHeadlines(): ArticleResponse = client.get {
         url {
             path("top-headlines")
-            parameter("country", "ru")
+            parameter("country", "us")
         }
     }.body()
 }
