@@ -2,6 +2,10 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+
+    alias(libs.plugins.kotlinSerialization)
+   // alias(libs.plugins.buildKonfig)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -72,6 +76,14 @@ kotlin {
         }
     }
 }
+
+//buildkonfig {
+//    packageName = "com.example.newsapp"
+//
+////    defaultConfigs {
+////        buildConfigField(STRING, "appid", "56fc6c6cb76c0864b4cd055080568268")
+////    }
+//}
 
 //sqldelight {
 //    databases {
