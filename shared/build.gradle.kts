@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
 
     alias(libs.plugins.kotlinSerialization)
-   // alias(libs.plugins.buildKonfig)
+    // alias(libs.plugins.buildKonfig)
     alias(libs.plugins.sqldelight)
 }
 
@@ -31,23 +31,25 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         commonMain.dependencies {
-        implementation(libs.bundles.ktorClientCommon)
-        implementation(libs.kotlinx.serialization.core)
-        implementation(libs.kotlinx.serialization.json)
-        implementation(libs.kotlinx.coroutines.core)
-        implementation(libs.kotlinx.datetime)
+            implementation(libs.bundles.ktorClientCommon)
+            implementation(libs.kotlinx.serialization.core)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.datetime)
 
-        implementation(libs.multiplatform.settings)
-        implementation(libs.multiplatform.settings.serialization)
+            implementation(libs.multiplatform.settings)
+            implementation(libs.multiplatform.settings.serialization)
 
-        implementation(libs.sqldelight.coroutines.extensions)
-        implementation(libs.sqldelight.sqlite.adapter)
+            implementation(libs.sqldelight.coroutines.extensions)
+            implementation(libs.sqldelight.sqlite.adapter)
 
-        implementation(libs.kodein.di)
-    }
+            implementation(libs.kotlinx.immutable)
+
+            implementation(libs.kodein.di)
+        }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.okhttp3.logging.interceptor)
@@ -102,5 +104,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        buildConfig = false
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }

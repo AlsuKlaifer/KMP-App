@@ -1,4 +1,4 @@
-package com.example.newsapp.android
+package com.example.newsapp.android.main
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
