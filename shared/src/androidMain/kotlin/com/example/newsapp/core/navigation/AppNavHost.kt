@@ -1,4 +1,4 @@
-package com.example.newsapp.feature.navigation
+package com.example.newsapp.core.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -26,8 +26,8 @@ fun AppNavHost(
         Modifier.padding(innerPadding),
     ) {
         composable(BottomNavigationScreen.Home.route) { HomeScreen(navController) }
-        composable(BottomNavigationScreen.Categories.route) { CategoriesScreen() }
-        composable(BottomNavigationScreen.Profile.route) { ProfileScreen() }
+        composable(BottomNavigationScreen.Categories.route) { CategoriesScreen(navController) }
+        composable(BottomNavigationScreen.Profile.route) { ProfileScreen(navController) }
 
         composable(
             Screen.Detail.route,

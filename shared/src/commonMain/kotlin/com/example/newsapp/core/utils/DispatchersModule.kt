@@ -2,6 +2,7 @@ package com.example.newsapp.core.utils
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import org.kodein.di.DI
 import org.kodein.di.bindProvider
 

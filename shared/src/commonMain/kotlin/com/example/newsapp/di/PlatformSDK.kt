@@ -2,6 +2,7 @@ package com.example.newsapp.di
 
 import com.example.newsapp.core.network.networkModule
 import com.example.newsapp.core.utils.dispatchersModule
+import com.example.newsapp.feature.auth.di.authModule
 import com.example.newsapp.feature.news.di.newsModule
 import org.kodein.di.DI
 import org.kodein.di.DirectDI
@@ -22,6 +23,7 @@ object PlatformSDK {
                 networkModule,
                 dispatchersModule,
                 newsModule,
+                authModule,
             )
         }.direct
     }

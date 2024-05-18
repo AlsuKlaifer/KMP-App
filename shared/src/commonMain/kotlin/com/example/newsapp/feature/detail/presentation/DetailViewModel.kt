@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel : BaseViewModel() {
 
-    private val getTopHeadlinesUseCase: GetArticleByTitleUseCase by PlatformSDK.lazyInstance()
+    private val getArticleByTitleUseCase: GetArticleByTitleUseCase by PlatformSDK.lazyInstance()
 
     private val _viewState = MutableStateFlow(DetailState())
 
@@ -31,7 +31,7 @@ class DetailViewModel : BaseViewModel() {
         scope.launch {
             viewState = viewState.copy(isLoading = true)
 
-            viewState = when (val response = getTopHeadlinesUseCase(title)) {
+            viewState = when (val response = getArticleByTitleUseCase(title)) {
                 is ResultWrapper.Failed -> {
                     viewState.copy(isLoading = false, error = response.errorMessage)
                 }

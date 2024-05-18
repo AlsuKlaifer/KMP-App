@@ -1,4 +1,4 @@
-package com.example.newsapp.feature.navigation
+package com.example.newsapp.core.navigation
 
 
 sealed class Screen(

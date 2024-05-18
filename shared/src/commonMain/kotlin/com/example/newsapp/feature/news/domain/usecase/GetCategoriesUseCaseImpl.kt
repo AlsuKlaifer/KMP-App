@@ -10,7 +10,7 @@ class GetCategoriesUseCaseImpl(
     private val ioDispatcher: CoroutineDispatcher,
     private val newsRepository: NewsRepository,
 ) : GetCategoriesUseCase {
-    override suspend fun invoke(title: String): ResultWrapper<List<Category>> =
+    override suspend fun invoke(): ResultWrapper<List<Category>> =
         withContext(ioDispatcher) {
             newsRepository.getCategories()
         }

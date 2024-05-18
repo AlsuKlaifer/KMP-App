@@ -16,7 +16,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.newsapp.R
 import com.example.newsapp.core.designsystem.theme.AppTheme
@@ -24,7 +26,6 @@ import com.example.newsapp.core.widget.BackTopBar
 import com.example.newsapp.core.widget.BaseImage
 import com.example.newsapp.feature.detail.presentation.DetailState
 import com.example.newsapp.feature.detail.presentation.DetailViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun DetailScreen(
@@ -78,15 +79,31 @@ private fun ScreenContent(
             }
 
             item {
-                Text(text = state.article?.title.orEmpty())
+                Text(
+                    text = state.article?.title.orEmpty(),
+                    style = AppTheme.typography.baseBold.copy(
+                        fontSize = 22.sp
+                    )
+                )
             }
 
             item {
-                Text(text = state.article?.author.orEmpty())
+                Text(
+                    text = state.article?.author.orEmpty(),
+                    style = AppTheme.typography.base.copy(
+                        fontSize = 18.sp,
+                        color = AppTheme.colors.grayText
+                    )
+                )
             }
 
             item {
-                Text(text = state.article?.content.orEmpty())
+                Text(
+                    text = state.article?.content.orEmpty(),
+                    style = AppTheme.typography.base.copy(
+                        fontSize = 20.sp,
+                    )
+                )
             }
         }
     }

@@ -1,19 +1,25 @@
 package com.example.newsapp.core.designsystem.theme.values
 
 import androidx.compose.ui.text.TextStyle
-import com.example.newsapp.core.designsystem.theme.values.Typography
-import com.example.newsapp.core.designsystem.theme.values.baseDarkPalette
-import com.example.newsapp.core.designsystem.theme.values.baseLightPalette
+import androidx.compose.ui.text.font.FontWeight
 
 internal val baseLightTypography = Typography(
     base = TextStyle(
         color = baseLightPalette.grayText
+    ),
+    baseBold = TextStyle(
+        color = baseLightPalette.grayText,
+        fontWeight = FontWeight.Bold
     )
 
 )
 
 internal val baseDarkTypography = Typography(
     base = TextStyle(
-        color = baseDarkPalette.grayText
+        color = baseDarkPalette.onBackground,
+    ),
+    baseBold = TextStyle(
+        color = baseDarkPalette.onBackground,
+        fontWeight = FontWeight.Bold
     )
 )

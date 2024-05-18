@@ -5,5 +5,5 @@ import com.example.newsapp.feature.news.data.model.Category
 import com.example.newsapp.feature.news.data.model.response.Article
 
 interface GetCategoriesUseCase {
-    suspend operator fun invoke(title: String): ResultWrapper<List<Category>>
+    suspend operator fun invoke(): ResultWrapper<List<Category>>
 }

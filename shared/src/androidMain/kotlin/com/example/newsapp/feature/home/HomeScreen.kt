@@ -19,8 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -116,18 +114,19 @@ private fun NewsItem(
             }
             Text(
                 text = article.title.orEmpty(),
-                style = TextStyle(
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
+                style = AppTheme.typography.baseBold.copy(
+                    fontSize = 18.sp,
                 )
             )
             if (!article.author.isNullOrBlank()) {
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
-                    text = article.author, style = TextStyle(
-                        fontSize = 13.sp,
+                    text = article.author,
+                    style = AppTheme.typography.base.copy(
+                        fontSize = 14.sp,
                         color = AppTheme.colors.grayText
                     )
+
                 )
             }
         }

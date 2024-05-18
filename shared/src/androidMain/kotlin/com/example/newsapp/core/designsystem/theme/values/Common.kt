@@ -23,6 +23,7 @@ data class Colors(
 
 data class Typography(
     val base: TextStyle,
+    val baseBold : TextStyle,
 )
 
 data class Padding(

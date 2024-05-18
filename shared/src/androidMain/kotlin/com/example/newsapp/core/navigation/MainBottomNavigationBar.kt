@@ -1,4 +1,4 @@
-package com.example.newsapp.feature.navigation
+package com.example.newsapp.core.navigation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.HorizontalDivider
