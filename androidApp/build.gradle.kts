@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.compose.navigation)
     debugImplementation(libs.compose.ui.tooling)
 
     implementation(platform(libs.firebase.bom))

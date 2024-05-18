@@ -8,12 +8,16 @@ import androidx.compose.ui.unit.Dp
 
 data class Colors(
     val primary: Color = Color(0xFF0094FF),
-    val white: Color = Color(0xFFFFFFFF),
-    val black: Color = Color(0xFF000000),
+    val onPrimary: Color = Color(0xFFFFFFFF),
+
+    val secondary: Color = Color(0xFFCCCCCC),
 
     val background : Color = Color(0xFFFFFFFF),
     val onBackground : Color = Color(0xFF000000),
+
     val error: Color = Color(0xFFFF1500),
+    val white: Color = Color(0xFFFFFFFF),
+    val black: Color = Color(0xFF000000),
     val grayText: Color = Color(0xFFCCCCCC),
 )
 
