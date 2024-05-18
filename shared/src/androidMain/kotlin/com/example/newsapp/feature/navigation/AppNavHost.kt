@@ -25,16 +25,16 @@ fun AppNavHost(
         startDestination = startDestination.route,
         Modifier.padding(innerPadding),
     ) {
-        composable(BottomNavigationScreen.Home.route) { HomeScreen() }
+        composable(BottomNavigationScreen.Home.route) { HomeScreen(navController) }
         composable(BottomNavigationScreen.Categories.route) { CategoriesScreen() }
         composable(BottomNavigationScreen.Profile.route) { ProfileScreen() }
 
         composable(
             Screen.Detail.route,
-            arguments = listOf(navArgument("detailId") { type = NavType.IntType })
+            arguments = listOf(navArgument(Screen.DETAIL_ARG) { type = NavType.StringType })
         ) {
-            val detailArg = it.arguments?.getInt("detailId")
-            detailArg?.let { DetailScreen(it) }
+            val detailArg = it.arguments?.getString(Screen.DETAIL_ARG)
+            detailArg?.let { DetailScreen(it, navController) }
         }
 
     }

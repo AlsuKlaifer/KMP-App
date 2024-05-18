@@ -1,7 +1,8 @@
 package com.example.newsapp.feature.home
 
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -12,54 +13,61 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.example.newsapp.R
 import com.example.newsapp.core.designsystem.theme.AppTheme
-import com.example.newsapp.core.widget.BackTopBar
 import com.example.newsapp.core.widget.BaseImage
-import com.example.newsapp.core.widget.asBgColor
+import com.example.newsapp.core.widget.BorderCard
+import com.example.newsapp.core.widget.TitleTopBar
 import com.example.newsapp.feature.home.presentation.HomeState
 import com.example.newsapp.feature.home.presentation.HomeViewModel
-import com.example.newsapp.feature.news.data.response.Article
+import com.example.newsapp.feature.news.data.model.response.Article
+import com.valentinilk.shimmer.shimmer
 
 @Composable
 fun HomeScreen(
+    navController: NavController,
     viewModel: HomeViewModel = viewModel(),
 ) {
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
 
-    ScreenContent(state)
+    ScreenContent(state, navController)
 
 }
 
 @Composable
 private fun ScreenContent(
     state: HomeState,
+    navController: NavController,
 ) {
     Scaffold(
         modifier = Modifier
             .fillMaxHeight(),
         containerColor = AppTheme.colors.background,
         topBar = {
-            BackTopBar(title = "News")
+            TitleTopBar(title = stringResource(id = R.string.news))
         }
     ) {
         LazyColumn(
             contentPadding = PaddingValues(
-                start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp
+                start = AppTheme.padding._16dp,
+                end = AppTheme.padding._16dp,
+                top = AppTheme.padding._8dp,
+                bottom = AppTheme.padding._8dp
             ),
-            verticalArrangement = Arrangement.spacedBy(18.dp),
+            verticalArrangement = Arrangement.spacedBy(AppTheme.padding._16dp),
             modifier = Modifier
                 .padding(it)
                 .fillMaxSize()
@@ -67,7 +75,7 @@ private fun ScreenContent(
             items(
                 items = state.newsList
             ) { news ->
-                NewsItem(news)
+                NewsItem(news, navController)
             }
         }
     }
@@ -76,31 +84,38 @@ private fun ScreenContent(
 @Composable
 private fun NewsItem(
     article: Article,
+    navController: NavController,
 ) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .asBgColor(),
-        shape = AppTheme.cornerShape.rounded12dp,
-        border = BorderStroke(2.dp, AppTheme.colors.grayText),
-        elevation = CardDefaults.cardElevation(0.dp, 0.dp, 0.dp, 0.dp, 0.dp, 0.dp),
-        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.background)
+    BorderCard(
+        onClick = { navController.navigate("detail/${article.title}") }
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(AppTheme.padding._16dp),
         ) {
             if (!article.urlToImage.isNullOrBlank()) {
                 BaseImage(
                     model = article.urlToImage,
                     requestBuilderTransform = { it.fitCenter() },
-                    modifier = Modifier
+                    modifier = Modifier.fillMaxWidth(),
+                    loadingPlaceholder = {
+                        Box(
+                            modifier = Modifier
+                                .shimmer()
+                                .fillMaxWidth()
+                                .height(200.dp)
+                                .background(
+                                    color = AppTheme.colors.onBackground,
+                                    shape = AppTheme.cornerShape.rounded12dp
+                                )
+                        )
+                    }
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
             }
             Text(
-                text = article.title ?: "",
+                text = article.title.orEmpty(),
                 style = TextStyle(
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
@@ -116,6 +131,5 @@ private fun NewsItem(
                 )
             }
         }
-
     }
 }

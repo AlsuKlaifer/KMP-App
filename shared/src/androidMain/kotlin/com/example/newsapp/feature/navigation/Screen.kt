@@ -8,6 +8,10 @@ sealed class Screen(
 //    data object Categories : Screen(route = "categories")
 //    data object Profile : Screen(route = "profile")
 
-    data object Detail : Screen("detail/{newsId}")
+    data object Detail : Screen("detail/{$DETAIL_ARG}")
     data object SignIn : Screen("signIn")
+
+    companion object {
+        const val DETAIL_ARG = "NEWS_TITLE"
+    }
 }

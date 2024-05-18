@@ -1,4 +1,4 @@
-package com.example.newsapp.feature.news.data.response
+package com.example.newsapp.feature.news.data.model.response
 
 
 import kotlinx.serialization.SerialName

@@ -1,54 +1,46 @@
-package com.example.newsapp.feature.home.presentation
+package com.example.newsapp.feature.detail.presentation
 
 import com.example.newsapp.core.CommonStateFlow
 import com.example.newsapp.core.asCommonStateFlow
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.core.vm.BaseViewModel
 import com.example.newsapp.di.PlatformSDK
-import com.example.newsapp.feature.news.data.model.response.Article
+import com.example.newsapp.feature.news.domain.usecase.GetArticleByTitleUseCase
 import com.example.newsapp.feature.news.domain.usecase.GetTopHeadlinesUseCase
-import kotlinx.collections.immutable.PersistentList
-import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+class DetailViewModel : BaseViewModel() {
 
-class HomeViewModel : BaseViewModel() {
+    private val getTopHeadlinesUseCase: GetArticleByTitleUseCase by PlatformSDK.lazyInstance()
 
-    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase by PlatformSDK.lazyInstance()
+    private val _viewState = MutableStateFlow(DetailState())
 
-    private val _viewState = MutableStateFlow(HomeState())
-
-    protected var viewState: HomeState
+    protected var viewState: DetailState
         get() = _viewState.value
         set(value) {
             _viewState.value = value
         }
 
-    val viewStates: CommonStateFlow<HomeState>
+    val viewStates: CommonStateFlow<DetailState>
         get() = _viewState.asStateFlow().asCommonStateFlow()
 
-    init {
-        loadNews()
-    }
-
-    private fun loadNews() {
+    fun loadArticle(title: String) {
         scope.launch {
             viewState = viewState.copy(isLoading = true)
 
-            viewState = when (val response = getTopHeadlinesUseCase()) {
+            viewState = when (val response = getTopHeadlinesUseCase(title)) {
                 is ResultWrapper.Failed -> {
                     viewState.copy(isLoading = false, error = response.errorMessage)
                 }
 
                 is ResultWrapper.Success -> {
-                    viewState.copy(newsList = response.data.toPersistentList())
+                    viewState.copy(article = response.data)
                 }
             }
         }
     }
-
 
 }

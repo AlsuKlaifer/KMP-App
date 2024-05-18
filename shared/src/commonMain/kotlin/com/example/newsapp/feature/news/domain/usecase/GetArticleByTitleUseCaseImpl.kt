@@ -6,11 +6,11 @@ import com.example.newsapp.feature.news.domain.NewsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
-class GetTopHeadlinesUseCaseImpl(
+class GetArticleByTitleUseCaseImpl(
     private val ioDispatcher: CoroutineDispatcher,
     private val newsRepository: NewsRepository,
-) : GetTopHeadlinesUseCase {
-    override suspend fun invoke(): ResultWrapper<List<Article>> = withContext(ioDispatcher) {
-        newsRepository.getTopHeadlines()
+) : GetArticleByTitleUseCase {
+    override suspend fun invoke(title: String): ResultWrapper<Article> = withContext(ioDispatcher) {
+        newsRepository.getArticleByTitle(title)
     }
 }
