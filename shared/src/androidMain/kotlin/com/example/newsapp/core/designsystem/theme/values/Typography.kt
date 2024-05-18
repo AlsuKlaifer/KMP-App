@@ -5,10 +5,10 @@ import androidx.compose.ui.text.font.FontWeight
 
 internal val baseLightTypography = Typography(
     base = TextStyle(
-        color = baseLightPalette.grayText
+        color = baseLightPalette.onBackground
     ),
     baseBold = TextStyle(
-        color = baseLightPalette.grayText,
+        color = baseLightPalette.onBackground,
         fontWeight = FontWeight.Bold
     )
 
