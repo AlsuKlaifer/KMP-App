@@ -9,3 +9,9 @@ data class CategoriesState(
     val isLoading: Boolean = false,
     val error: String? = null,
 )
+
+sealed interface CategoriesAction {
+}
+
+sealed interface CategoriesEvent {
+}

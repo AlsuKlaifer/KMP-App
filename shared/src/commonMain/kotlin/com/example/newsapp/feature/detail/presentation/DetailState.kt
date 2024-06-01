@@ -7,3 +7,11 @@ data class DetailState(
     val isLoading: Boolean = false,
     val error: String? = null,
 )
+
+sealed interface DetailAction {
+    data object NavigateBack : DetailAction
+}
+
+sealed interface DetailEvent {
+    data object onBackClicked : DetailEvent
+}

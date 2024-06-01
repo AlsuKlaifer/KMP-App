@@ -22,8 +22,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.newsapp.R
 import com.example.newsapp.core.designsystem.theme.AppTheme
+import com.example.newsapp.core.utils.rememberClick
 import com.example.newsapp.core.widget.BackTopBar
 import com.example.newsapp.core.widget.BaseImage
+import com.example.newsapp.feature.detail.presentation.DetailEvent
 import com.example.newsapp.feature.detail.presentation.DetailState
 import com.example.newsapp.feature.detail.presentation.DetailViewModel
 
@@ -39,6 +41,8 @@ fun DetailScreen(
     }
 
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
+
+    val consumer = rememberClick<DetailEvent> { viewModel.obtainEvent(it) }
 
     ScreenContent(navController, state)
 }

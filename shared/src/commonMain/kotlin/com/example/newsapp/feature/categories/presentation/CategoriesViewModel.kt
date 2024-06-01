@@ -12,23 +12,21 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class CategoriesViewModel() : BaseViewModel() {
+class CategoriesViewModel() : BaseViewModel<CategoriesState,  CategoriesAction, CategoriesEvent>(
+    CategoriesState()
+) {
 
     private val getCategoriesUseCase: GetCategoriesUseCase by PlatformSDK.lazyInstance()
 
-    private val _viewState = MutableStateFlow(CategoriesState())
-
-    protected var viewState: CategoriesState
-        get() = _viewState.value
-        set(value) {
-            _viewState.value = value
-        }
-
-    val viewStates: CommonStateFlow<CategoriesState>
-        get() = _viewState.asStateFlow().asCommonStateFlow()
-
     init {
         loadCategories()
+    }
+
+    override fun obtainEvent(event: CategoriesEvent) {
+        when (event) {
+
+            else -> {}
+        }
     }
 
     private fun loadCategories() {

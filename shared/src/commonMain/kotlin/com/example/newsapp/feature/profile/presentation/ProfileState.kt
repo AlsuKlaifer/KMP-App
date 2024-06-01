@@ -7,3 +7,9 @@ data class ProfileState(
     val isLoading: Boolean = false,
     val error: String? = null,
 )
+
+sealed interface ProfileAction {
+}
+
+sealed interface ProfileEvent {
+}
