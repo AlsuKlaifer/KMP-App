@@ -2,19 +2,9 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-
-    let items: [ListItem] = [
-        ListItem(imageName: "airplane", title: "Текст 1", author: "Автор"),
-        ListItem(imageName: "airplane", title: "Текст 2", author: "Автор"),
-        ListItem(imageName: "airplane", title: "Текст 3", author: "Автор"),
-        ListItem(imageName: "airplane", title: "Текст 4", author: "Автор"),
-        ListItem(imageName: "airplane", title: "Текст 5", author: "Автор"),
-        ListItem(imageName: "airplane", title: "Текст 6", author: "Автор"),
-    ]
-    
     var body: some View {
         TabView {
-            NewsView(items: items)
+            NewsScreen()
                 .tabItem {
                     Image(systemName: "newspaper")
                     Text("News")

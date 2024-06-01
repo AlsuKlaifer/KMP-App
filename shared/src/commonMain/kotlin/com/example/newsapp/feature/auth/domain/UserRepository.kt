@@ -7,4 +7,6 @@ interface UserRepository {
 
     fun getUser(): ResultWrapper<User>
 
+    suspend fun getUser(user: User): User?
+
 }

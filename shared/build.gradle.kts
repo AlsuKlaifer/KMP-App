@@ -16,6 +16,7 @@ kotlin {
             }
         }
     }
+    task("testClasses")
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -34,6 +35,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(libs.koin.core)
             implementation(libs.bundles.ktorClientCommon)
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.kotlinx.serialization.json)
@@ -49,13 +51,19 @@ kotlin {
             implementation(libs.kotlinx.immutable)
 
             implementation(libs.kodein.di)
+
+            implementation(libs.moko)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.ktor.client.android)
             implementation(libs.okhttp3.logging.interceptor)
             implementation(libs.kotlinx.coroutines.android)
 
             implementation(libs.sqldelight.android.driver)
+
+            implementation(libs.koin.core)
+            implementation(libs.koin.android)
 
             implementation(libs.compose.ui)
             implementation(libs.compose.material3)

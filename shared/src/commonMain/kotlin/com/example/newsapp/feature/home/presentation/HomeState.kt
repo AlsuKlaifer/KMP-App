@@ -9,3 +9,11 @@ data class HomeState(
     val isLoading: Boolean = false,
     val error: String? = null,
 )
+
+sealed interface HomeAction {
+    data class NavigateToDetails(var title: String? = null) : HomeAction
+}
+
+sealed interface HomeEvent {
+    data class OnArticleClicked(val article: Article) : HomeEvent
+}

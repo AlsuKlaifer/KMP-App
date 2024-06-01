@@ -18,7 +18,6 @@ internal class NewsRepositoryImpl(
 
     override suspend fun getArticleByTitle(title: String): ResultWrapper<Article> = runCatching {
         val response = newsService.getArticleByTitle(title)
-        //апишка говна
         response.articles.first()
     }.fold(
         onFailure = { ResultWrapper.Failed(it) },
@@ -26,7 +25,6 @@ internal class NewsRepositoryImpl(
     )
 
     override suspend fun getCategories(): ResultWrapper<List<Category>> = runCatching {
-        //апишка говна
         categories
     }.fold(
         onFailure = { ResultWrapper.Failed(it) },

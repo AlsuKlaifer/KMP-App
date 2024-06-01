@@ -1,7 +1,16 @@
 package com.example.newsapp
 
-class AndroidPlatform : Platform {
-    override val name: String = "Android ${android.os.Build.VERSION.SDK_INT}"
-}
+import com.example.newsapp.feature.home.presentation.HomeViewModel
+import io.ktor.client.engine.android.Android
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
+actual fun platformModule() = module {
 
-actual fun getPlatform(): Platform = AndroidPlatform()
+    single {
+        Android.create()
+    }
+
+    viewModel {
+        HomeViewModel(get())
+    }
+}

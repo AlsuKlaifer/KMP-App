@@ -23,21 +23,12 @@ struct CategoryView: View {
         "Art"
     ]
     
-    let items: [ListItem] = [
-        ListItem(imageName: "airplane", title: "Текст 1", author: "Автор"),
-        ListItem(imageName: "airplane", title: "Текст 2", author: "Автор"),
-        ListItem(imageName: "airplane", title: "Текст 3", author: "Автор"),
-        ListItem(imageName: "airplane", title: "Текст 4", author: "Автор"),
-        ListItem(imageName: "airplane", title: "Текст 5", author: "Автор"),
-        ListItem(imageName: "airplane", title: "Текст 6", author: "Автор"),
-    ]
-    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 0) {
                     ForEach(categories, id: \.self) { category in
-                        NavigationLink(destination: NewsListView(items: items)
+                        NavigationLink(destination: NewsScreen()
                             .navigationBarTitleDisplayMode(.inline)
                         ) {
                             CategoryCell(category: category)
