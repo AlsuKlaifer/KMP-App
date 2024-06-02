@@ -3,15 +3,15 @@ package com.example.newsapp.core.utils
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
-import org.kodein.di.DI
-import org.kodein.di.bindProvider
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
 //ИНТЕРНАЛ
-val dispatchersModule = DI.Module("dispatcherModule") {
-    bindProvider<CoroutineDispatcher>(tag = CoroutineDispatchers.MAIN) { Dispatchers.Main }
-    bindProvider<CoroutineDispatcher>(tag = CoroutineDispatchers.IO) { Dispatchers.IO }
-    bindProvider<CoroutineDispatcher>(tag = CoroutineDispatchers.DEFAULT) { Dispatchers.Default }
-    bindProvider<CoroutineDispatcher>(tag = CoroutineDispatchers.UNCONFINED) { Dispatchers.Unconfined }
+val dispatchersModule = module {
+    factory<CoroutineDispatcher>(named(CoroutineDispatchers.MAIN)) { Dispatchers.Main }
+    factory<CoroutineDispatcher>(named(CoroutineDispatchers.IO)) { Dispatchers.IO }
+    factory<CoroutineDispatcher>(named(CoroutineDispatchers.DEFAULT)) { Dispatchers.Default }
+    factory<CoroutineDispatcher>(named(CoroutineDispatchers.UNCONFINED)) { Dispatchers.Unconfined }
 }
 
 //АПИ

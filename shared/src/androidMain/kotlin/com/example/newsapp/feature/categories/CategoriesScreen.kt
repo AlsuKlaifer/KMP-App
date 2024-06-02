@@ -32,12 +32,13 @@ import com.example.newsapp.core.widget.TitleTopBar
 import com.example.newsapp.feature.categories.presentation.CategoriesState
 import com.example.newsapp.feature.categories.presentation.CategoriesViewModel
 import com.example.newsapp.feature.categories.presentation.model.CategoryUiModel
+import org.koin.androidx.compose.getViewModel
 
 
 @Composable
 fun CategoriesScreen(
     navController: NavController,
-    viewModel: CategoriesViewModel = viewModel(),
+    viewModel: CategoriesViewModel = getViewModel(),
 ) {
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
 

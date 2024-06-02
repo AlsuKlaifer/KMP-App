@@ -1,22 +1,17 @@
 package com.example.newsapp.feature.categories.presentation
 
-import com.example.newsapp.core.CommonStateFlow
-import com.example.newsapp.core.asCommonStateFlow
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.core.vm.BaseViewModel
-import com.example.newsapp.di.PlatformSDK
 import com.example.newsapp.feature.categories.presentation.model.toUi
 import com.example.newsapp.feature.news.domain.usecase.GetCategoriesUseCase
 import kotlinx.collections.immutable.toPersistentList
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class CategoriesViewModel() : BaseViewModel<CategoriesState,  CategoriesAction, CategoriesEvent>(
+class CategoriesViewModel(
+    private val getCategoriesUseCase: GetCategoriesUseCase,
+) : BaseViewModel<CategoriesState, CategoriesAction, CategoriesEvent>(
     CategoriesState()
 ) {
-
-    private val getCategoriesUseCase: GetCategoriesUseCase by PlatformSDK.lazyInstance()
 
     init {
         loadCategories()

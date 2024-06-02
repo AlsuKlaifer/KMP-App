@@ -24,11 +24,12 @@ import com.example.newsapp.core.widget.asBgColor
 import com.example.newsapp.feature.profile.presentation.ProfileState
 import com.example.newsapp.feature.profile.presentation.ProfileViewModel
 import com.valentinilk.shimmer.shimmer
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun ProfileScreen(
     navController: NavController,
-    viewModel: ProfileViewModel = viewModel(),
+    viewModel: ProfileViewModel = getViewModel(),
 ) {
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
 

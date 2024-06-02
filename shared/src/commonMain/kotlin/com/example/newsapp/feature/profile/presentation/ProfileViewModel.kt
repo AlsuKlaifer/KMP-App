@@ -2,15 +2,14 @@ package com.example.newsapp.feature.profile.presentation
 
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.core.vm.BaseViewModel
-import com.example.newsapp.di.PlatformSDK
 import com.example.newsapp.feature.auth.domain.usecase.GetCurrentUserUseCase
 import kotlinx.coroutines.launch
 
-class ProfileViewModel : BaseViewModel<ProfileState, ProfileAction, ProfileEvent>(
+class ProfileViewModel(
+    private val getCurrentUserUseCase: GetCurrentUserUseCase,
+) : BaseViewModel<ProfileState, ProfileAction, ProfileEvent>(
     ProfileState()
 ) {
-
-    private val getCurrentUserUseCase: GetCurrentUserUseCase by PlatformSDK.lazyInstance()
 
     init {
         loadUser()

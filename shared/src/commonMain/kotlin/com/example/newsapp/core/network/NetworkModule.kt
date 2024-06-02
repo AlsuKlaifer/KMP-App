@@ -16,29 +16,28 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.URLProtocol
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import org.kodein.di.DI
-import org.kodein.di.bind
-import org.kodein.di.bindSingleton
-import org.kodein.di.instance
-import org.kodein.di.singleton
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
 
 private const val API_KEY_NAME = "apiKey"
 private const val API_KEY_VALUE = "9a8105900b8247d490ca716370d82424"
 private const val BASE_URL = "newsapi.org/v2/"
 
-val networkModule = DI.Module(name = "networkModule") {
+val networkModule = module {
 
-    bind<HttpEngineFactory>() with singleton { HttpEngineFactory() }
+    single<HttpEngineFactory> {
+        HttpEngineFactory()
+    }
 
-    bindSingleton<Json> {
+    single<Json> {
         Json {
             isLenient = true
             ignoreUnknownKeys = true
         }
     }
 
-    bindSingleton(tag = "ApiKeyPlugin") {
+    single(named("ApiKeyPlugin")) {
         createClientPlugin(name = "ApiKeyPlugin") {
             on(SetupRequest) { builder ->
                 builder.url.parameters.apply {
@@ -48,11 +47,11 @@ val networkModule = DI.Module(name = "networkModule") {
         }
     }
 
-    bindSingleton {
+    single {
         buildHttpClient(
-            engine = instance<HttpEngineFactory>().createEngine(),
-            json = instance(),
-            apiKeyPlugin = instance(tag = "ApiKeyPlugin"),
+            engine = get<HttpEngineFactory>().createEngine(),
+            json = get(),
+            apiKeyPlugin = get(named("ApiKeyPlugin")),
         )
     }
 }

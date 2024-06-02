@@ -5,20 +5,19 @@ import com.example.newsapp.feature.auth.data.UserRepositoryImpl
 import com.example.newsapp.feature.auth.domain.UserRepository
 import com.example.newsapp.feature.auth.domain.usecase.GetCurrentUserUseCase
 import com.example.newsapp.feature.auth.domain.usecase.GetCurrentUserUseCaseImpl
-import org.kodein.di.DI
-import org.kodein.di.bindProvider
-import org.kodein.di.instance
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
-val authModule = DI.Module("authModule") {
+val authModule = module {
 
-    bindProvider<UserRepository> {
+    factory<UserRepository> {
         UserRepositoryImpl()
     }
 
-    bindProvider<GetCurrentUserUseCase> {
+    factory<GetCurrentUserUseCase> {
         GetCurrentUserUseCaseImpl(
-            instance(tag = CoroutineDispatchers.IO),
-            instance()
+            get(named(CoroutineDispatchers.IO)),
+            get()
         )
     }
 }

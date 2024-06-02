@@ -22,7 +22,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.newsapp.R
 import com.example.newsapp.core.designsystem.theme.AppTheme
@@ -33,12 +32,15 @@ import com.example.newsapp.feature.home.presentation.HomeState
 import com.example.newsapp.feature.home.presentation.HomeViewModel
 import com.example.newsapp.feature.news.data.model.response.Article
 import com.valentinilk.shimmer.shimmer
+import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HomeScreen(
     navController: NavController,
-    viewModel: HomeViewModel = viewModel(),
+    viewModel: HomeViewModel = getViewModel(),
 ) {
+
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
 
     ScreenContent(state, navController)

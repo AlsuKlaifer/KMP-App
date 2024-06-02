@@ -35,7 +35,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.koin.core)
+
             implementation(libs.bundles.ktorClientCommon)
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.kotlinx.serialization.json)
@@ -50,7 +50,7 @@ kotlin {
 
             implementation(libs.kotlinx.immutable)
 
-            implementation(libs.kodein.di)
+            implementation(libs.koin.core)
 
             implementation(libs.moko)
         }

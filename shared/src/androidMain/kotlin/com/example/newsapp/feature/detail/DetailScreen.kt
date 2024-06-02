@@ -28,12 +28,13 @@ import com.example.newsapp.core.widget.BaseImage
 import com.example.newsapp.feature.detail.presentation.DetailEvent
 import com.example.newsapp.feature.detail.presentation.DetailState
 import com.example.newsapp.feature.detail.presentation.DetailViewModel
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun DetailScreen(
     title: String,
     navController: NavController,
-    viewModel: DetailViewModel = viewModel(),
+    viewModel: DetailViewModel = getViewModel(),
 ) {
 
     LaunchedEffect(viewModel) {

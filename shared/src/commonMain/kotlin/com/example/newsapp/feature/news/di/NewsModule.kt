@@ -11,39 +11,37 @@ import com.example.newsapp.feature.news.domain.usecase.GetCategoriesUseCase
 import com.example.newsapp.feature.news.domain.usecase.GetCategoriesUseCaseImpl
 import com.example.newsapp.feature.news.domain.usecase.GetTopHeadlinesUseCase
 import com.example.newsapp.feature.news.domain.usecase.GetTopHeadlinesUseCaseImpl
-import org.kodein.di.DI
-import org.kodein.di.bindProvider
-import org.kodein.di.bindSingleton
-import org.kodein.di.instance
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
-val newsModule = DI.Module("newsModule") {
+val newsModule = module {
 
-    bindProvider<NewsService> {
-        NewsServiceImpl(instance())
+    factory<NewsService> {
+        NewsServiceImpl(get())
     }
 
-    bindSingleton<NewsRepository> {
-        NewsRepositoryImpl(instance())
+    single<NewsRepository> {
+        NewsRepositoryImpl(get())
     }
 
-    bindProvider<GetTopHeadlinesUseCase> {
+    single<GetTopHeadlinesUseCase> {
         GetTopHeadlinesUseCaseImpl(
-            ioDispatcher = instance(tag = CoroutineDispatchers.IO),
-            instance()
+            ioDispatcher = get(named(CoroutineDispatchers.IO)),
+            get()
         )
     }
 
-    bindProvider<GetArticleByTitleUseCase> {
+    single<GetArticleByTitleUseCase> {
         GetArticleByTitleUseCaseImpl(
-            ioDispatcher = instance(tag = CoroutineDispatchers.IO),
-            instance()
+            ioDispatcher = get(named(CoroutineDispatchers.IO)),
+            get()
         )
     }
 
-    bindProvider<GetCategoriesUseCase> {
+    single<GetCategoriesUseCase> {
         GetCategoriesUseCaseImpl(
-            ioDispatcher = instance(tag = CoroutineDispatchers.IO),
-            instance()
+            ioDispatcher = get(named(CoroutineDispatchers.IO)),
+            get()
         )
     }
 

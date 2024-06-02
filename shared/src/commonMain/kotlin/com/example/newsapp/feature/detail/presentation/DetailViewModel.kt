@@ -2,11 +2,12 @@ package com.example.newsapp.feature.detail.presentation
 
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.core.vm.BaseViewModel
-import com.example.newsapp.di.PlatformSDK
 import com.example.newsapp.feature.news.domain.usecase.GetArticleByTitleUseCase
 import kotlinx.coroutines.launch
 
-class DetailViewModel : BaseViewModel<DetailState, DetailAction, DetailEvent>(
+class DetailViewModel(
+    private val getArticleByTitleUseCase: GetArticleByTitleUseCase,
+) : BaseViewModel<DetailState, DetailAction, DetailEvent>(
     DetailState()
 ) {
 
@@ -21,8 +22,6 @@ class DetailViewModel : BaseViewModel<DetailState, DetailAction, DetailEvent>(
             viewAction = DetailAction.NavigateBack
         }
     }
-
-    private val getArticleByTitleUseCase: GetArticleByTitleUseCase by PlatformSDK.lazyInstance()
 
     //вызвать в аойс с нужным параметром
     fun loadArticle(title: String) {

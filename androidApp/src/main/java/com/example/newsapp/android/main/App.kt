@@ -1,7 +1,7 @@
 package com.example.newsapp.android.main
 
 import android.app.Application
-import com.example.newsapp.di.PlatformSDK
+import com.example.newsapp.di.initKoin
 
 class App : Application() {
 
@@ -12,5 +12,5 @@ class App : Application() {
 }
 
 fun App.initShared() {
-    PlatformSDK.init()
+    initKoin()
 }

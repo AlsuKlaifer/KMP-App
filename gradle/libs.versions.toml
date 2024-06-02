@@ -13,7 +13,7 @@ compose-material3 = "1.2.1"
 compose-navigation = "2.5.3"
 moko = "0.13.1"
 
-koin = "3.1.4"
+
 # multiplatform
 kotlin = "1.9.23"
 coroutines = "1.8.0" # https://github.com/Kotlin/kotlinx.coroutines
@@ -23,7 +23,7 @@ datetime = "0.6.0-RC.2" # https://github.com/Kotlin/kotlinx-datetime
 sqlDelight = "2.0.2" # https://github.com/cashapp/sqldelight
 settings = "1.1.1" # https://github.com/russhwolf/multiplatform-settings
 ktor = "2.3.10" # https://github.com/ktorio/ktor
-kodein = "7.21.2" # https://github.com/kosi-libs/Kodein
+koin = "3.4.0"
 buildKonfig = "0.15.1" # https://github.com/yshrsmz/BuildKonfig
 
 # androidx https://developer.android.com/jetpack/androidx/versions
@@ -31,10 +31,8 @@ androidx-lifecycle = "2.7.0"
 androidx-activityCompose = "1.9.0"
 androidx-splashscreen = "1.0.1"
 
-coil = "2.6.0" # https://github.com/coil-kt/coil
 glideCompose = "1.0.0-beta01"
 composeShimmer = "1.3.0"
-
 
 firebase-bom = "32.8.1" # https://firebase.google.com/docs/android/learn-more#bom
 googleService = "4.4.1"
@@ -83,17 +81,12 @@ ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "k
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" } # android
 okhttp3-logging-interceptor = "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.14" # android
 
-#coilCompose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
-#coilSvg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
-#coil = { module = "io.coil-kt:coil", version.ref = "coil" }
-
 glide-compose = { group = "com.github.bumptech.glide", name = "compose", version.ref = "glideCompose" }
 composeShimmer = { group = "com.valentinilk.shimmer", name = "compose-shimmer", version.ref = "composeShimmer" }
 
 koin-android = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 
-kodein-di = { module = "org.kodein.di:kodein-di", version.ref = "kodein" }
 multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "settings" }
 multiplatform-settings-serialization = { module = "com.russhwolf:multiplatform-settings-serialization", version.ref = "settings"  }
 
