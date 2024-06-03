@@ -1,0 +1,13 @@
+CREATE TABLE userDB(
+    email TEXT NOT NULL PRIMARY KEY,
+    password TEXT NOT NULL,
+    username TEXT NOT NULL,
+    avatarUrl TEXT NOT NULL
+);
+
+insertUser:
+INSERT INTO userDB
+VALUES ?;
+
+getUser:
+SELECT * FROM userDB WHERE email == ? AND password == ? LIMIT 1;

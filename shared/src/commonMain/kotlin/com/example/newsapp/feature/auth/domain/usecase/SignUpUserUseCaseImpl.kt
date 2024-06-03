@@ -1,16 +1,25 @@
 package com.example.newsapp.feature.auth.domain.usecase
 
+import com.example.newsapp.core.utils.Result
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.feature.auth.data.model.User
 import com.example.newsapp.feature.auth.domain.UserRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
-class GetCurrentUserUseCaseImpl(
+class SignUpUserUseCaseImpl(
     private val ioDispatcher: CoroutineDispatcher,
     private val userRepository: UserRepository,
-) : GetCurrentUserUseCase {
-    override suspend fun invoke(): ResultWrapper<User?> = withContext(ioDispatcher) {
-        userRepository.getCurrentUser()
+) : SignUpUserUseCase {
+    override suspend fun invoke(
+        username: String,
+        email: String,
+        password: String,
+    ): ResultWrapper<Result> = withContext(ioDispatcher) {
+        userRepository.signUp(
+            User(
+                username = username, email = email, password = password
+            )
+        )
     }
 }

@@ -8,3 +8,7 @@ sealed interface ResultWrapper<out T> {
         val code: Int? = null,
     ) : ResultWrapper<Nothing>
 }
+
+enum class Result {
+    SUCCESS, ERROR
+}

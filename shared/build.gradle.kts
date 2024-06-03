@@ -96,13 +96,13 @@ kotlin {
 ////    }
 //}
 
-//sqldelight {
-//    databases {
-//        create("Database") {
-//            packageName.set("com.itis.weather")
-//        }
-//    }
-//}
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("com.example.newsapp.")
+        }
+    }
+}
 
 android {
     namespace = "com.example.newsapp"

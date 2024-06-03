@@ -6,14 +6,19 @@ import com.example.newsapp.feature.news.domain.usecase.GetArticleByTitleUseCase
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
+    private val title: String,
     private val getArticleByTitleUseCase: GetArticleByTitleUseCase,
 ) : BaseViewModel<DetailState, DetailAction, DetailEvent>(
     DetailState()
 ) {
 
+    init {
+        loadArticle()
+    }
+
     override fun obtainEvent(event: DetailEvent) {
         when (event) {
-            DetailEvent.onBackClicked -> onBackClicked()
+            DetailEvent.OnBackClicked -> onBackClicked()
         }
     }
 
@@ -23,8 +28,7 @@ class DetailViewModel(
         }
     }
 
-    //вызвать в аойс с нужным параметром
-    fun loadArticle(title: String) {
+    private fun loadArticle() {
         scope.launch {
             viewState = viewState.copy(isLoading = true)
 

@@ -12,46 +12,59 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.newsapp.R
 import com.example.newsapp.core.designsystem.theme.AppTheme
 import com.example.newsapp.core.utils.rememberClick
 import com.example.newsapp.core.widget.BackTopBar
 import com.example.newsapp.core.widget.BaseImage
+import com.example.newsapp.feature.detail.presentation.DetailAction
 import com.example.newsapp.feature.detail.presentation.DetailEvent
 import com.example.newsapp.feature.detail.presentation.DetailState
 import com.example.newsapp.feature.detail.presentation.DetailViewModel
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun DetailScreen(
     title: String,
     navController: NavController,
-    viewModel: DetailViewModel = getViewModel(),
+    viewModel: DetailViewModel = getViewModel(parameters = { parametersOf(title) }),
 ) {
 
-    LaunchedEffect(viewModel) {
-        viewModel.loadArticle(title)
-    }
-
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
-
+    val action by viewModel.viewActions.collectAsState(initial = null)
     val consumer = rememberClick<DetailEvent> { viewModel.obtainEvent(it) }
 
-    ScreenContent(navController, state)
+    DetailsActions(navController, action = action)
+
+    ScreenContent(state, consumer)
+}
+
+@Composable
+private fun DetailsActions(
+    navController: NavController,
+    action: DetailAction?,
+) {
+    LaunchedEffect(key1 = action) {
+        when (action) {
+            DetailAction.NavigateBack -> navController.navigateUp()
+            null -> Unit
+        }
+    }
 }
 
 @Composable
 private fun ScreenContent(
-    navController: NavController,
     state: DetailState,
+    consumer: (DetailEvent) -> Unit,
 ) {
     Scaffold(
         modifier = Modifier
@@ -59,7 +72,8 @@ private fun ScreenContent(
         containerColor = AppTheme.colors.background,
         topBar = {
             BackTopBar(title = stringResource(id = R.string.news)) {
-                navController.navigateUp()
+
+                consumer(DetailEvent.OnBackClicked)
             }
         }
     ) {

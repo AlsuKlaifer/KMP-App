@@ -9,7 +9,9 @@ data class ProfileState(
 )
 
 sealed interface ProfileAction {
+    data object NavigateToSignInScreen : ProfileAction
 }
 
 sealed interface ProfileEvent {
+    data object OnSignInClicked : ProfileEvent
 }

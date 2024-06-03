@@ -13,5 +13,5 @@ sealed interface DetailAction {
 }
 
 sealed interface DetailEvent {
-    data object onBackClicked : DetailEvent
+    data object OnBackClicked : DetailEvent
 }

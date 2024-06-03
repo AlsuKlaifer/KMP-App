@@ -6,11 +6,12 @@ import com.example.newsapp.feature.auth.domain.UserRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
-class GetCurrentUserUseCaseImpl(
+class SignInUserUseCaseImpl(
     private val ioDispatcher: CoroutineDispatcher,
     private val userRepository: UserRepository,
-) : GetCurrentUserUseCase {
-    override suspend fun invoke(): ResultWrapper<User?> = withContext(ioDispatcher) {
-        userRepository.getCurrentUser()
-    }
+) : SignInUserUseCase {
+    override suspend fun invoke(email: String, password: String): ResultWrapper<User> =
+        withContext(ioDispatcher) {
+            userRepository.signIn(email, password)
+        }
 }

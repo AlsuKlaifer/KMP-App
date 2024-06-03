@@ -53,5 +53,7 @@ dependencies {
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.config)
 
+    implementation(libs.koin.android)
+
     implementation(libs.androidx.splashscreen)
 }

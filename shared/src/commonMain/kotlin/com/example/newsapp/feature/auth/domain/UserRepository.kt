@@ -1,12 +1,15 @@
 package com.example.newsapp.feature.auth.domain
 
+import com.example.newsapp.core.utils.Result
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.feature.auth.data.model.User
 
 interface UserRepository {
 
-    fun getUser(): ResultWrapper<User>
+    suspend fun signIn(email: String, password: String): ResultWrapper<User>
 
-    suspend fun getUser(user: User): User?
+    suspend fun signUp(user: User) : ResultWrapper<Result>
+
+    suspend fun getCurrentUser() : ResultWrapper<User?>
 
 }

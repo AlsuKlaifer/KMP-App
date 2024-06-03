@@ -13,6 +13,8 @@ import com.example.newsapp.feature.categories.CategoriesScreen
 import com.example.newsapp.feature.detail.DetailScreen
 import com.example.newsapp.feature.home.HomeScreen
 import com.example.newsapp.feature.profile.ProfileScreen
+import com.example.newsapp.feature.signin.SignInScreen
+import com.example.newsapp.feature.signup.SignUpScreen
 
 @Composable
 fun AppNavHost(
@@ -36,6 +38,10 @@ fun AppNavHost(
             val detailArg = it.arguments?.getString(Screen.DETAIL_ARG)
             detailArg?.let { DetailScreen(it, navController) }
         }
+
+        composable(Screen.SignIn.route) { SignInScreen(navController) }
+
+        composable(Screen.SignUp.route) { SignUpScreen(navController) }
 
     }
 }

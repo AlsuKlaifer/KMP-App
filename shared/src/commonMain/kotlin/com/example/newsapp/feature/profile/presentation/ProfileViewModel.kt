@@ -16,7 +16,15 @@ class ProfileViewModel(
     }
 
     override fun obtainEvent(event: ProfileEvent) {
-        TODO("Not yet implemented")
+        when (event) {
+            ProfileEvent.OnSignInClicked -> onSignInClicked()
+        }
+    }
+
+    private fun onSignInClicked() {
+        scope.launch {
+            viewAction = ProfileAction.NavigateToSignInScreen
+        }
     }
 
     private fun loadUser() {

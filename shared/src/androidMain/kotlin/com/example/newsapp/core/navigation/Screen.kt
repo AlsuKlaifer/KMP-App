@@ -4,12 +4,9 @@ package com.example.newsapp.core.navigation
 sealed class Screen(
     open val route: String,
 ) {
-//    data object Home : Screen(route = "home")
-//    data object Categories : Screen(route = "categories")
-//    data object Profile : Screen(route = "profile")
-
     data object Detail : Screen("detail/{$DETAIL_ARG}")
-    data object SignIn : Screen("signIn")
+    data object SignIn : Screen("sign_in")
+    data object SignUp : Screen("sign_up")
 
     companion object {
         const val DETAIL_ARG = "NEWS_TITLE"
