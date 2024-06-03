@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -102,6 +103,7 @@ private fun ScreenContent(
                     value = state.emailQuery,
                     onValueChange = { string -> consumer(SignInEvent.OnEmailQueryChanged(string)) },
                     label = { Text("Email") },
+                    shape = AppTheme.cornerShape.rounded16dp,
                     modifier = Modifier.fillMaxWidth()
                 )
 
@@ -109,6 +111,7 @@ private fun ScreenContent(
                     value = state.passwordQuery,
                     onValueChange = { string -> consumer(SignInEvent.OnPasswordQueryChanged(string)) },
                     label = { Text("Password") },
+                    shape = AppTheme.cornerShape.rounded16dp,
                     modifier = Modifier.fillMaxWidth()
                 )
 
@@ -117,14 +120,13 @@ private fun ScreenContent(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End
+                    horizontalArrangement = Arrangement.Center
                 ) {
                     BaseTextButton(
                         onClick = { consumer(SignInEvent.OnSignInClicked) },
                         textResId = R.string.sign_in
                     )
                 }
-
             }
         }
     }

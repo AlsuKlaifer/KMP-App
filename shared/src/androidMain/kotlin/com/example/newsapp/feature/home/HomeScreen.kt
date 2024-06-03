@@ -16,6 +16,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -25,15 +27,19 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.newsapp.R
 import com.example.newsapp.core.designsystem.theme.AppTheme
+import com.example.newsapp.core.utils.rememberClick
 import com.example.newsapp.core.widget.BaseImage
 import com.example.newsapp.core.widget.BorderCard
 import com.example.newsapp.core.widget.TitleTopBar
+import com.example.newsapp.feature.home.presentation.HomeAction
+import com.example.newsapp.feature.home.presentation.HomeEvent
 import com.example.newsapp.feature.home.presentation.HomeState
 import com.example.newsapp.feature.home.presentation.HomeViewModel
 import com.example.newsapp.feature.news.data.model.response.Article
+import com.example.newsapp.feature.profile.presentation.ProfileAction
+import com.example.newsapp.feature.profile.presentation.ProfileEvent
 import com.valentinilk.shimmer.shimmer
 import org.koin.androidx.compose.getViewModel
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HomeScreen(
@@ -41,16 +47,34 @@ fun HomeScreen(
     viewModel: HomeViewModel = getViewModel(),
 ) {
 
+
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
+    val action by viewModel.viewActions.collectAsState(initial = null)
+    val consumer = rememberClick<HomeEvent> { viewModel.obtainEvent(it) }
 
-    ScreenContent(state, navController)
+    HomeActions(navController, action)
 
+    ScreenContent(state, consumer)
+
+}
+
+@Composable
+private fun HomeActions(
+    navController: NavController,
+    action: HomeAction?,
+) {
+    LaunchedEffect(key1 = action) {
+        when (action) {
+            is HomeAction.NavigateToDetails -> {navController.navigate("detail/${action.title}")}
+            null -> Unit
+        }
+    }
 }
 
 @Composable
 private fun ScreenContent(
     state: HomeState,
-    navController: NavController,
+    consumer: (HomeEvent) -> Unit,
 ) {
     Scaffold(
         modifier = Modifier
@@ -75,7 +99,7 @@ private fun ScreenContent(
             items(
                 items = state.newsList
             ) { news ->
-                NewsItem(news, navController)
+                NewsItem(news, consumer)
             }
         }
     }
@@ -84,10 +108,10 @@ private fun ScreenContent(
 @Composable
 private fun NewsItem(
     article: Article,
-    navController: NavController,
+    consumer: (HomeEvent) -> Unit,
 ) {
     BorderCard(
-        onClick = { navController.navigate("detail/${article.title}") }
+        onClick = { consumer(HomeEvent.OnArticleClicked(article)) }
     ) {
         Column(
             modifier = Modifier

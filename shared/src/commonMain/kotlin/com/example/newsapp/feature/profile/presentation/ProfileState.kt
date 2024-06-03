@@ -10,8 +10,10 @@ data class ProfileState(
 
 sealed interface ProfileAction {
     data object NavigateToSignInScreen : ProfileAction
+    data object NavigateToSignUpScreen : ProfileAction
 }
 
 sealed interface ProfileEvent {
     data object OnSignInClicked : ProfileEvent
+    data object OnSignUpClicked : ProfileEvent
 }

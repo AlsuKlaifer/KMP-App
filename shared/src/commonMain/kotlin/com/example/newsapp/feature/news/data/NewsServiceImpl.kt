@@ -17,14 +17,16 @@ internal class NewsServiceImpl(
             host = "newsapi.org"
 
             path("v2/top-headlines")
-            parameter("apiKey", "9a8105900b8247d490ca716370d82424")
             parameter("country", "us")
         }
     }.body()
 
     override suspend fun getArticleByTitle(title: String): ArticleResponse = httpClient.get {
         url {
-            path("top-headlines")
+            protocol = URLProtocol.HTTPS
+            host = "newsapi.org"
+
+            path("v2/top-headlines")
             parameter("country", "us")
             parameter("q", title)
         }

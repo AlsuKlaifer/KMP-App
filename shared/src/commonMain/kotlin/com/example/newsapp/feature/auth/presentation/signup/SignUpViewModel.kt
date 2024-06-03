@@ -46,6 +46,8 @@ class SignUpViewModel(
 
                 is ResultWrapper.Success -> {
                     viewAction = SignUpAction.NavigateToProfile
+
+                    viewAction = SignUpAction.ShowUserCreatedAccountToast
                 }
             }
         }

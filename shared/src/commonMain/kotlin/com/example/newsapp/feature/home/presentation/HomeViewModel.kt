@@ -25,6 +25,7 @@ class HomeViewModel(
     private fun onArticleClicked(article: Article) {
         scope.launch {
             viewAction = HomeAction.NavigateToDetails(title = article.title)
+            viewAction = null
         }
     }
 

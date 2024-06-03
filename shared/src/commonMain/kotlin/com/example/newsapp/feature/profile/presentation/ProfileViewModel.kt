@@ -18,6 +18,7 @@ class ProfileViewModel(
     override fun obtainEvent(event: ProfileEvent) {
         when (event) {
             ProfileEvent.OnSignInClicked -> onSignInClicked()
+            ProfileEvent.OnSignUpClicked -> onSignUpClicked()
         }
     }
 
@@ -26,6 +27,13 @@ class ProfileViewModel(
             viewAction = ProfileAction.NavigateToSignInScreen
         }
     }
+
+    private fun onSignUpClicked() {
+        scope.launch {
+            viewAction = ProfileAction.NavigateToSignUpScreen
+        }
+    }
+
 
     private fun loadUser() {
         scope.launch {

@@ -1,5 +1,7 @@
 package com.example.newsapp.feature.auth.presentation.signup
 
+import com.example.newsapp.feature.auth.presentation.signin.SignInAction
+
 
 data class SignUpState(
     val username : String = "",
@@ -12,6 +14,7 @@ data class SignUpState(
 sealed interface SignUpAction {
     data object NavigateBack : SignUpAction
     data object NavigateToProfile : SignUpAction
+    data object ShowUserCreatedAccountToast : SignUpAction
 }
 
 sealed interface SignUpEvent {

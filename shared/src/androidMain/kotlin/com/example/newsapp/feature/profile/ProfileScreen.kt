@@ -59,6 +59,7 @@ private fun ProfileActions(
         when (action) {
             ProfileAction.NavigateToSignInScreen -> navController.navigate("sign_in")
             null -> Unit
+            ProfileAction.NavigateToSignUpScreen ->  navController.navigate("sign_up")
         }
     }
 }
@@ -98,6 +99,11 @@ private fun NotAuthorizedScreen(
         BaseTextButton(
             onClick = { consumer(ProfileEvent.OnSignInClicked) },
             textResId = R.string.sign_in
+        )
+
+        BaseTextButton(
+            onClick = { consumer(ProfileEvent.OnSignUpClicked) },
+            textResId = R.string.sign_up
         )
     }
 }
