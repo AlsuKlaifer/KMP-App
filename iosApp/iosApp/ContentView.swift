@@ -2,19 +2,23 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
+    @StateObject var navigator = NewsNavigator()
+    @StateObject var profilenavigator = ProfileNavigator()
+    @StateObject var categoryNavigator = CategoryNavigator()
+
     var body: some View {
         TabView {
-            NewsScreen()
+            NewsNavigationView().environmentObject(navigator)
                 .tabItem {
                     Image(systemName: "newspaper")
                     Text("News")
                 }
-            CategoryView()
+            CategoryNavigationView().environmentObject(categoryNavigator)
                 .tabItem {
                     Image(systemName: "list.bullet")
                     Text("Categories")
                 }
-            ProfileView()
+            ProfileNavigationView().environmentObject(profilenavigator)
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profile")
