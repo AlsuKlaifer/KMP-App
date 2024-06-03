@@ -5,6 +5,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import com.example.newsapp.core.designsystem.theme.AppTheme
@@ -14,9 +15,11 @@ fun BaseTextButton(
     onClick: () -> Unit,
     @StringRes
     textResId: Int,
+    modifier: Modifier = Modifier
 ) {
     Button(
         onClick = onClick,
+        modifier = modifier,
         colors = ButtonDefaults.buttonColors(
             containerColor = AppTheme.colors.primary,
         )

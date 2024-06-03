@@ -1,5 +1,7 @@
 package com.example.newsapp.feature.auth.presentation.signup
 
+import com.example.newsapp.core.firebase.FirebaseCrashlyticsBindings
+import com.example.newsapp.core.firebase.ScreenEvent
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.core.vm.BaseViewModel
 import com.example.newsapp.feature.auth.domain.usecase.SignUpUserUseCase
@@ -7,8 +9,13 @@ import kotlinx.coroutines.launch
 
 class SignUpViewModel(
     private val signInUserUseCase: SignUpUserUseCase,
+    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<SignUpState, SignUpAction, SignUpEvent>
     (SignUpState()) {
+
+    init {
+        firebaseCrashlyticsBindings?.logScreenEvent(ScreenEvent.SIGN_UP)
+    }
 
     override fun obtainEvent(event: SignUpEvent) {
         when (event) {

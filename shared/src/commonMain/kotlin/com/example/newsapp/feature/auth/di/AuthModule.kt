@@ -5,10 +5,10 @@ import com.example.newsapp.feature.auth.data.UserRepositoryImpl
 import com.example.newsapp.feature.auth.domain.UserRepository
 import com.example.newsapp.feature.auth.domain.usecase.GetCurrentUserUseCase
 import com.example.newsapp.feature.auth.domain.usecase.GetCurrentUserUseCaseImpl
-import com.example.newsapp.feature.auth.domain.usecase.SignUpUserUseCase
-import com.example.newsapp.feature.auth.domain.usecase.SignUpUserUseCaseImpl
 import com.example.newsapp.feature.auth.domain.usecase.SignInUserUseCase
 import com.example.newsapp.feature.auth.domain.usecase.SignInUserUseCaseImpl
+import com.example.newsapp.feature.auth.domain.usecase.SignUpUserUseCase
+import com.example.newsapp.feature.auth.domain.usecase.SignUpUserUseCaseImpl
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 

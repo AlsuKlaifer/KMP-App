@@ -6,5 +6,5 @@ interface NewsService {
 
     suspend fun getTopHeadlines(): ArticleResponse
     suspend fun getTopHeadlinesWithCategory(category: String): ArticleResponse
-    suspend fun getArticleByTitle(title: String) : ArticleResponse
+    suspend fun getArticleByTitle(title: String): ArticleResponse
 }

@@ -7,7 +7,7 @@ val detailsModule = module {
 
     factory<DetailViewModel> { parameters ->
         DetailViewModel(
-            title = parameters.get(), get()
+            title = parameters.get(), get(), get()
         )
     }
 

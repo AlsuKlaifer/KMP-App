@@ -1,10 +1,8 @@
 package com.example.newsapp.feature.auth.presentation.signup
 
-import com.example.newsapp.feature.auth.presentation.signin.SignInAction
-
 
 data class SignUpState(
-    val username : String = "",
+    val username: String = "",
     val emailQuery: String = "",
     val passwordQuery: String = "",
     val isLoading: Boolean = false,

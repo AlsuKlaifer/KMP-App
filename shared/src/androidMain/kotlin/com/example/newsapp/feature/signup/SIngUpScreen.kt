@@ -29,7 +29,6 @@ import com.example.newsapp.core.designsystem.theme.AppTheme
 import com.example.newsapp.core.utils.rememberClick
 import com.example.newsapp.core.widget.BackTopBar
 import com.example.newsapp.core.widget.BaseTextButton
-import com.example.newsapp.feature.auth.presentation.signin.SignInEvent
 import com.example.newsapp.feature.auth.presentation.signup.SignUpAction
 import com.example.newsapp.feature.auth.presentation.signup.SignUpEvent
 import com.example.newsapp.feature.auth.presentation.signup.SignUpState
@@ -60,7 +59,10 @@ private fun SignUpActions(
         when (action) {
             null -> Unit
             SignUpAction.NavigateBack -> navController.navigateUp()
-            SignUpAction.NavigateToProfile -> { navController.navigateUp() }
+            SignUpAction.NavigateToProfile -> {
+                navController.navigateUp()
+            }
+
             SignUpAction.ShowUserCreatedAccountToast -> Toast.makeText(
                 context,
                 "Account was created",
@@ -140,7 +142,8 @@ private fun ScreenContent(
                 ) {
                     BaseTextButton(
                         onClick = { consumer(SignUpEvent.OnSignUpClicked) },
-                        textResId = R.string.sign_up
+                        textResId = R.string.sign_up,
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
             }

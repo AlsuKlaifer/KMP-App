@@ -1,26 +1,25 @@
 package com.example.newsapp.feature.categories.presentation.newscategory
 
+import com.example.newsapp.core.firebase.FirebaseCrashlyticsBindings
+import com.example.newsapp.core.firebase.ScreenEvent
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.core.vm.BaseViewModel
-import com.example.newsapp.feature.detail.presentation.DetailAction
-import com.example.newsapp.feature.home.presentation.HomeAction
-import com.example.newsapp.feature.home.presentation.HomeEvent
-import com.example.newsapp.feature.home.presentation.HomeState
 import com.example.newsapp.feature.news.data.model.response.Article
-import com.example.newsapp.feature.news.domain.usecase.GetTopHeadlinesUseCase
 import com.example.newsapp.feature.news.domain.usecase.GetTopHeadlinesWithCategoryUseCase
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
 
 
 class NewsCategoryViewModel(
-    private val categoryCodeName : String,
+    private val categoryCodeName: String,
     private val getTopHeadlinesWithCategoryUseCase: GetTopHeadlinesWithCategoryUseCase,
+    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<NewsCategoryState, NewsCategoryAction, NewsCategoryEvent>(
     NewsCategoryState(categoryCodeName)
 ) {
     init {
         loadNews()
+        firebaseCrashlyticsBindings?.logScreenEvent(ScreenEvent.NEWS_WITH_CATEGORY)
     }
 
     override fun obtainEvent(event: NewsCategoryEvent) {

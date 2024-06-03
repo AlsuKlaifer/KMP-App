@@ -15,5 +15,5 @@ sealed interface CategoriesAction {
 }
 
 sealed interface CategoriesEvent {
-    data class OnCategoryClick(val codeName : String) : CategoriesEvent
+    data class OnCategoryClick(val codeName: String) : CategoriesEvent
 }

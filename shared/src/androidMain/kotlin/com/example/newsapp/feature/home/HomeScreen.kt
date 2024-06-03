@@ -36,10 +36,7 @@ import com.example.newsapp.feature.home.presentation.HomeEvent
 import com.example.newsapp.feature.home.presentation.HomeState
 import com.example.newsapp.feature.home.presentation.HomeViewModel
 import com.example.newsapp.feature.news.data.model.response.Article
-import com.example.newsapp.feature.profile.presentation.ProfileAction
-import com.example.newsapp.feature.profile.presentation.ProfileEvent
 import com.valentinilk.shimmer.shimmer
-import kotlinx.collections.immutable.PersistentList
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -64,7 +61,10 @@ private fun HomeActions(
 ) {
     LaunchedEffect(key1 = action) {
         when (action) {
-            is HomeAction.NavigateToDetails -> {navController.navigate("detail/${action.title}")}
+            is HomeAction.NavigateToDetails -> {
+                navController.navigate("detail/${action.title}")
+            }
+
             null -> Unit
         }
     }

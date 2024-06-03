@@ -1,5 +1,7 @@
 package com.example.newsapp.feature.detail.presentation
 
+import com.example.newsapp.core.firebase.FirebaseCrashlyticsBindings
+import com.example.newsapp.core.firebase.ScreenEvent
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.core.vm.BaseViewModel
 import com.example.newsapp.feature.news.domain.usecase.GetArticleByTitleUseCase
@@ -8,12 +10,14 @@ import kotlinx.coroutines.launch
 class DetailViewModel(
     private val title: String,
     private val getArticleByTitleUseCase: GetArticleByTitleUseCase,
+    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<DetailState, DetailAction, DetailEvent>(
     DetailState()
 ) {
 
     init {
         loadArticle()
+        firebaseCrashlyticsBindings?.logScreenEvent(ScreenEvent.DETAILS)
     }
 
     override fun obtainEvent(event: DetailEvent) {

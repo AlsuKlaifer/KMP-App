@@ -1,5 +1,7 @@
 package com.example.newsapp.feature.home.presentation
 
+import com.example.newsapp.core.firebase.FirebaseCrashlyticsBindings
+import com.example.newsapp.core.firebase.ScreenEvent
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.core.vm.BaseViewModel
 import com.example.newsapp.feature.news.data.model.response.Article
@@ -9,11 +11,13 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase,
+    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<HomeState, HomeAction, HomeEvent>(
     HomeState()
 ) {
     init {
         loadNews()
+        firebaseCrashlyticsBindings?.logScreenEvent(ScreenEvent.HOME)
     }
 
     override fun obtainEvent(event: HomeEvent) {

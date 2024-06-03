@@ -25,13 +25,13 @@ fun App.initShared() {
             appVersionNumber = "1",
             osVersion = "release",
             deviceType = resources.deviceType,
-        )
+        ),
+        firebaseCrashlyticsBindings = AndroidCrashlyticsBinding()
     )
 
     initKoin(
         configuration
     ) {
         androidContext(this@initShared)
-
     }
 }

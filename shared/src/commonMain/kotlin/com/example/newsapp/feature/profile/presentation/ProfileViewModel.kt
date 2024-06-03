@@ -1,5 +1,7 @@
 package com.example.newsapp.feature.profile.presentation
 
+import com.example.newsapp.core.firebase.FirebaseCrashlyticsBindings
+import com.example.newsapp.core.firebase.ScreenEvent
 import com.example.newsapp.core.utils.ResultWrapper
 import com.example.newsapp.core.vm.BaseViewModel
 import com.example.newsapp.feature.auth.domain.usecase.GetCurrentUserUseCase
@@ -7,12 +9,14 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel(
     private val getCurrentUserUseCase: GetCurrentUserUseCase,
+    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<ProfileState, ProfileAction, ProfileEvent>(
     ProfileState()
 ) {
 
     init {
         loadUser()
+        firebaseCrashlyticsBindings?.logScreenEvent(ScreenEvent.PROFILE)
     }
 
     override fun obtainEvent(event: ProfileEvent) {

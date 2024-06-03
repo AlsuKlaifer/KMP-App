@@ -10,8 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -59,7 +57,7 @@ private fun ProfileActions(
         when (action) {
             ProfileAction.NavigateToSignInScreen -> navController.navigate("sign_in")
             null -> Unit
-            ProfileAction.NavigateToSignUpScreen ->  navController.navigate("sign_up")
+            ProfileAction.NavigateToSignUpScreen -> navController.navigate("sign_up")
         }
     }
 }

@@ -1,10 +1,10 @@
-package com.example.newsapp.com.example.newsapp.feature.home.di
+package com.example.newsapp.feature.home.di
 
 import com.example.newsapp.feature.home.presentation.HomeViewModel
 import org.koin.dsl.module
 
 val homeModule = module {
 
-    factory<HomeViewModel> { HomeViewModel(get()) }
+    factory<HomeViewModel> { HomeViewModel(get(), get()) }
 
 }

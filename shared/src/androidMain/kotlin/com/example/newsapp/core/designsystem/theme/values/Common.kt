@@ -12,8 +12,8 @@ data class Colors(
 
     val secondary: Color = Color(0xFFCCCCCC),
 
-    val background : Color = Color(0xFFFFFFFF),
-    val onBackground : Color = Color(0xFF000000),
+    val background: Color = Color(0xFFFFFFFF),
+    val onBackground: Color = Color(0xFF000000),
 
     val error: Color = Color(0xFFFF1500),
     val white: Color = Color(0xFFFFFFFF),
@@ -23,7 +23,7 @@ data class Colors(
 
 data class Typography(
     val base: TextStyle,
-    val baseBold : TextStyle,
+    val baseBold: TextStyle,
 )
 
 data class Padding(

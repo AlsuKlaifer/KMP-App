@@ -12,6 +12,6 @@ class GetTopHeadlinesWithCategoryUseCaseImpl(
 ) : GetTopHeadlinesWithCategoryUseCase {
     override suspend fun invoke(category: String): ResultWrapper<List<Article>> =
         withContext(ioDispatcher) {
-        newsRepository.getTopHeadlinesWithCategory(category)
-    }
+            newsRepository.getTopHeadlinesWithCategory(category)
+        }
 }

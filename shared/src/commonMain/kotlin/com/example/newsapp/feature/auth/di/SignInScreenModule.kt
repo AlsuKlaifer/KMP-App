@@ -6,7 +6,7 @@ import org.koin.dsl.module
 val signInScreenModule = module {
 
     factory<SignInViewModel> {
-        SignInViewModel(get())
+        SignInViewModel(get(), get())
     }
 
 }
