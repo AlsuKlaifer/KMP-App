@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import shared
 
 struct CategoryView: View {
 
@@ -28,10 +29,10 @@ struct CategoryView: View {
             ScrollView {
                 VStack(spacing: 0) {
                     ForEach(categories, id: \.self) { category in
-                        NavigationLink(destination: NewsScreen()
+                        NavigationLink(destination: NewsListViewSection()
                             .navigationBarTitleDisplayMode(.inline)
                         ) {
-                            CategoryCell(category: category)
+                            CategoryCell(category: category, image: "folder")
                         }
                         .padding(EdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20))
                     }
@@ -44,10 +45,11 @@ struct CategoryView: View {
 
 struct CategoryCell: View {
     let category: String
+    let image: String
     
     var body: some View {
         HStack {
-            Image(systemName: "folder")
+            Image(systemName: image)
                 .foregroundColor(.blue)
                 .padding(.trailing, 8)
             Text(category)
@@ -64,6 +66,31 @@ struct CategoryCell: View {
                 .opacity(0.5)
         )
         .shadow(radius: 2)
+    }
+}
+
+struct NewsListViewSection: View {
+    @ObservedObject private var viewModel = ViewModels().getHomeViewModel().asObserveableObject()
+        @EnvironmentObject var navigator: NewsNavigator
+
+    var body: some View {
+        NewsListView(
+            state: viewModel.state,
+            eventConsumer: { event in
+                viewModel.viewModel.obtainEvent(event: event)
+            })
+        .onReceive(viewModel.viewModel.viewActions.asPublisher()) { action in
+            handleAction(action: action)
+        }
+    }
+
+    private func handleAction(action: HomeAction?) {
+        switch action {
+        case let event as HomeActionNavigateToDetails:
+            break
+        default:
+            break
+        }
     }
 }
 
