@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class CategoriesViewModel(
     private val getCategoriesUseCase: GetCategoriesUseCase,
-    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
+    private val firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<CategoriesState, CategoriesAction, CategoriesEvent>(
     CategoriesState()
 ) {

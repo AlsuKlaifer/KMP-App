@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase,
-    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
+    private val firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<HomeState, HomeAction, HomeEvent>(
     HomeState()
 ) {

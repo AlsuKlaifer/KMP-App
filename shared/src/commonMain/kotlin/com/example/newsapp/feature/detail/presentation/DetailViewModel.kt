@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 class DetailViewModel(
     private val title: String,
     private val getArticleByTitleUseCase: GetArticleByTitleUseCase,
-    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
+    private val firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<DetailState, DetailAction, DetailEvent>(
     DetailState()
 ) {

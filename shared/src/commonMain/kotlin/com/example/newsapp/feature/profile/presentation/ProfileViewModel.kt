@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class ProfileViewModel(
     private val getCurrentUserUseCase: GetCurrentUserUseCase,
-    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
+    private val firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<ProfileState, ProfileAction, ProfileEvent>(
     ProfileState()
 ) {

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 class NewsCategoryViewModel(
     private val categoryCodeName: String,
     private val getTopHeadlinesWithCategoryUseCase: GetTopHeadlinesWithCategoryUseCase,
-    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
+    private val firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<NewsCategoryState, NewsCategoryAction, NewsCategoryEvent>(
     NewsCategoryState(categoryCodeName)
 ) {

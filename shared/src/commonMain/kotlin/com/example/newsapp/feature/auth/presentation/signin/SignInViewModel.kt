@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class SignInViewModel(
     private val signInUserUseCase: SignInUserUseCase,
-    firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
+    private val firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings?,
 ) : BaseViewModel<SignInState, SignInAction, SignInEvent>
     (SignInState()) {
 
