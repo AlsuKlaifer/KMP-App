@@ -10,7 +10,7 @@ fun configurationModule(configuration: Configuration): Module = module {
 
     single<PlatformConfiguration> { configuration.platformConfiguration }
 
-    single<FirebaseCrashlyticsBindings> {
+    single<FirebaseCrashlyticsBindings?> {
         configuration.firebaseCrashlyticsBindings
     }
 }

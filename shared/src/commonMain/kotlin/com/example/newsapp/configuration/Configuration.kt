@@ -6,7 +6,7 @@ data class Configuration(
     val platformConfiguration: PlatformConfiguration,
     val isDebug: Boolean,
 
-    val firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings,
+    val firebaseCrashlyticsBindings: FirebaseCrashlyticsBindings? = null,
 ) {
 
     enum class DeviceType {
