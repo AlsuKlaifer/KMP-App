@@ -22,7 +22,7 @@ import org.koin.dsl.module
 
 private const val API_KEY_NAME = "apiKey"
 private const val API_KEY_VALUE = "9a8105900b8247d490ca716370d82424"
-private const val BASE_URL = "newsapi.org/v2/"
+private const val BASE_URL = "newsapi.org/v2"
 
 val networkModule = module {
 
