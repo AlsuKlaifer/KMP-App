@@ -12,6 +12,7 @@ import com.example.newsapp.core.utils.dispatchersModule
 import com.example.newsapp.feature.auth.di.authModule
 import com.example.newsapp.feature.auth.di.signInScreenModule
 import com.example.newsapp.feature.auth.di.signUpScreenModule
+import com.example.newsapp.feature.categories.di.newsCategoryModule
 import com.example.newsapp.feature.news.di.newsModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -20,7 +21,6 @@ fun initKoin(conf: Configuration, appDeclaration: KoinAppDeclaration = {}) {
     startKoin {
         appDeclaration()
         modules(
-            // viewModelModule(),
             configurationModule(conf),
             networkModule,
             storageModule,
@@ -31,6 +31,7 @@ fun initKoin(conf: Configuration, appDeclaration: KoinAppDeclaration = {}) {
             homeModule,
             profileModule,
             categoriesModule,
+            newsCategoryModule,
             detailsModule,
             signInScreenModule,
             signUpScreenModule

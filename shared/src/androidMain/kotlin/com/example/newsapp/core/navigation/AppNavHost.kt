@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.newsapp.feature.categories.CategoriesScreen
+import com.example.newsapp.feature.categories.NewsCategoryScreen
 import com.example.newsapp.feature.detail.DetailScreen
 import com.example.newsapp.feature.home.HomeScreen
 import com.example.newsapp.feature.profile.ProfileScreen
@@ -37,6 +38,14 @@ fun AppNavHost(
         ) {
             val detailArg = it.arguments?.getString(Screen.DETAIL_ARG)
             detailArg?.let { DetailScreen(it, navController) }
+        }
+
+        composable(
+            Screen.NewsWithCategory.route,
+            arguments = listOf(navArgument(Screen.NEWS_CATEGORY_ARG) { type = NavType.StringType })
+        ) {
+            val categoryArg = it.arguments?.getString(Screen.NEWS_CATEGORY_ARG)
+            categoryArg?.let { NewsCategoryScreen(it, navController) }
         }
 
         composable(Screen.SignIn.route) { SignInScreen(navController) }

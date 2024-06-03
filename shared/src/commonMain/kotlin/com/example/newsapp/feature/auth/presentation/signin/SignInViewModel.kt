@@ -37,6 +37,7 @@ class SignInViewModel(
 
                 is ResultWrapper.Success -> {
                     viewAction = SignInAction.NavigateToProfile
+                    viewAction = null
                 }
             }
         }

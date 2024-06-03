@@ -7,6 +7,7 @@ import com.example.newsapp.feature.news.data.model.response.Article
 interface NewsRepository {
 
     suspend fun getTopHeadlines(): ResultWrapper<List<Article>>
+    suspend fun getTopHeadlinesWithCategory(category : String): ResultWrapper<List<Article>>
 
     suspend fun getArticleByTitle(title: String): ResultWrapper<Article>
 

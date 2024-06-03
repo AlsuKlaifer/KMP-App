@@ -1,4 +1,4 @@
-package com.example.newsapp.feature.home
+package com.example.newsapp.feature.categories
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,6 +21,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -28,59 +29,76 @@ import androidx.navigation.NavController
 import com.example.newsapp.R
 import com.example.newsapp.core.designsystem.theme.AppTheme
 import com.example.newsapp.core.utils.rememberClick
+import com.example.newsapp.core.widget.BackTopBar
 import com.example.newsapp.core.widget.BaseImage
 import com.example.newsapp.core.widget.BorderCard
 import com.example.newsapp.core.widget.TitleTopBar
+import com.example.newsapp.feature.categories.presentation.categories.CategoriesViewModel
+import com.example.newsapp.feature.categories.presentation.newscategory.NewsCategoryAction
+import com.example.newsapp.feature.categories.presentation.newscategory.NewsCategoryEvent
+import com.example.newsapp.feature.categories.presentation.newscategory.NewsCategoryState
+import com.example.newsapp.feature.categories.presentation.newscategory.NewsCategoryViewModel
 import com.example.newsapp.feature.home.presentation.HomeAction
 import com.example.newsapp.feature.home.presentation.HomeEvent
 import com.example.newsapp.feature.home.presentation.HomeState
-import com.example.newsapp.feature.home.presentation.HomeViewModel
 import com.example.newsapp.feature.news.data.model.response.Article
-import com.example.newsapp.feature.profile.presentation.ProfileAction
-import com.example.newsapp.feature.profile.presentation.ProfileEvent
 import com.valentinilk.shimmer.shimmer
-import kotlinx.collections.immutable.PersistentList
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
+import java.util.Locale
 
 @Composable
-fun HomeScreen(
+fun NewsCategoryScreen(
+    categoryCodeName: String,
     navController: NavController,
-    viewModel: HomeViewModel = getViewModel(),
+    viewModel: NewsCategoryViewModel = getViewModel
+        (parameters = { parametersOf(categoryCodeName) }
+    ),
 ) {
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
     val action by viewModel.viewActions.collectAsState(initial = null)
-    val consumer = rememberClick<HomeEvent> { viewModel.obtainEvent(it) }
+    val consumer = rememberClick<NewsCategoryEvent> { viewModel.obtainEvent(it) }
 
-    HomeActions(navController, action)
+    NewsCategoryActions(navController, action)
 
     ScreenContent(state, consumer)
 
 }
 
 @Composable
-private fun HomeActions(
+private fun NewsCategoryActions(
     navController: NavController,
-    action: HomeAction?,
+    action: NewsCategoryAction?,
 ) {
     LaunchedEffect(key1 = action) {
         when (action) {
-            is HomeAction.NavigateToDetails -> {navController.navigate("detail/${action.title}")}
+            is NewsCategoryAction.NavigateToDetails -> {
+                navController.navigate("detail/${action.title}")
+            }
+
             null -> Unit
+            NewsCategoryAction.NavigateBack -> navController.navigateUp()
         }
     }
 }
 
 @Composable
 private fun ScreenContent(
-    state: HomeState,
-    consumer: (HomeEvent) -> Unit,
+    state: NewsCategoryState,
+    consumer: (NewsCategoryEvent) -> Unit,
 ) {
     Scaffold(
         modifier = Modifier
             .fillMaxHeight(),
         containerColor = AppTheme.colors.background,
         topBar = {
-            TitleTopBar(title = stringResource(id = R.string.news))
+            BackTopBar(title = state.category.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.ENGLISH
+                ) else it.toString()
+            }) {
+                consumer(NewsCategoryEvent.OnBackClicked)
+            }
         }
     ) {
         LazyColumn(
@@ -108,10 +126,10 @@ private fun ScreenContent(
 @Composable
 private fun NewsItem(
     article: Article,
-    consumer: (HomeEvent) -> Unit,
+    consumer: (NewsCategoryEvent) -> Unit,
 ) {
     BorderCard(
-        onClick = { consumer(HomeEvent.OnArticleClicked(article)) }
+        onClick = { consumer(NewsCategoryEvent.OnArticleClicked(article)) }
     ) {
         Column(
             modifier = Modifier

@@ -3,7 +3,6 @@ package com.example.newsapp.feature.categories
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,11 +10,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.MailOutline
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,14 +30,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.newsapp.R
 import com.example.newsapp.core.designsystem.theme.AppTheme
+import com.example.newsapp.core.utils.rememberClick
 import com.example.newsapp.core.widget.BorderCard
 import com.example.newsapp.core.widget.TitleTopBar
-import com.example.newsapp.feature.categories.presentation.CategoriesState
-import com.example.newsapp.feature.categories.presentation.CategoriesViewModel
+import com.example.newsapp.feature.categories.presentation.categories.CategoriesAction
+import com.example.newsapp.feature.categories.presentation.categories.CategoriesEvent
+import com.example.newsapp.feature.categories.presentation.categories.CategoriesState
+import com.example.newsapp.feature.categories.presentation.categories.CategoriesViewModel
 import com.example.newsapp.feature.categories.presentation.model.CategoryUiModel
 import org.koin.androidx.compose.getViewModel
 
@@ -41,14 +50,32 @@ fun CategoriesScreen(
     viewModel: CategoriesViewModel = getViewModel(),
 ) {
     val state by viewModel.viewStates.collectAsStateWithLifecycle()
+    val action by viewModel.viewActions.collectAsState(initial = null)
+    val consumer = rememberClick<CategoriesEvent> { viewModel.obtainEvent(it) }
 
-    ScreenContent(state, navController)
+    CategoriesActions(navController, action)
+
+    ScreenContent(state, consumer)
+}
+
+@Composable
+private fun CategoriesActions(
+    navController: NavController,
+    action: CategoriesAction?,
+) {
+    LaunchedEffect(key1 = action) {
+        when (action) {
+            null -> Unit
+            is CategoriesAction.NavigateToCategoryNews ->
+                navController.navigate("news_category/${action.codeName}")
+        }
+    }
 }
 
 @Composable
 private fun ScreenContent(
     state: CategoriesState,
-    navController: NavController,
+    consumer: (CategoriesEvent) -> Unit,
 ) {
     Scaffold(
         modifier = Modifier
@@ -73,7 +100,7 @@ private fun ScreenContent(
             items(
                 items = state.categories
             ) { news ->
-                CategoryItem(news, navController)
+                CategoryItem(news, consumer)
             }
         }
     }
@@ -82,11 +109,11 @@ private fun ScreenContent(
 @Composable
 private fun CategoryItem(
     category: CategoryUiModel,
-    navController: NavController,
+    consumer: (CategoriesEvent) -> Unit,
 ) {
     BorderCard(
         onClick = {
-            //navController.navigate("detail/${article.title}")
+            consumer(CategoriesEvent.OnCategoryClick(category.codeName))
         }
     ) {
         Row(
@@ -95,8 +122,18 @@ private fun CategoryItem(
                 .padding(AppTheme.padding._8dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            val icon = when (category.codeName) {
+                "business" -> Icons.Filled.Call
+                "entertainment" -> Icons.Filled.Star
+                "general" -> Icons.Filled.AccountCircle
+                "health" -> Icons.Filled.Add
+                "science" -> Icons.Filled.Search
+                "sports" -> Icons.Filled.ShoppingCart
+                "technology" -> Icons.Filled.ShoppingCart
+                else -> Icons.Filled.MailOutline
+            }
             Icon(
-                Icons.Filled.MailOutline,
+                icon,
                 null,
                 tint = AppTheme.colors.primary,
                 modifier = Modifier.padding(start = 8.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)

@@ -60,8 +60,7 @@ private fun SignUpActions(
         when (action) {
             null -> Unit
             SignUpAction.NavigateBack -> navController.navigateUp()
-            SignUpAction.NavigateToProfile -> {
-                val temp = navController.popBackStack() }
+            SignUpAction.NavigateToProfile -> { navController.navigateUp() }
             SignUpAction.ShowUserCreatedAccountToast -> Toast.makeText(
                 context,
                 "Account was created",

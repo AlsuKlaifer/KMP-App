@@ -25,12 +25,14 @@ class ProfileViewModel(
     private fun onSignInClicked() {
         scope.launch {
             viewAction = ProfileAction.NavigateToSignInScreen
+            viewAction = null
         }
     }
 
     private fun onSignUpClicked() {
         scope.launch {
             viewAction = ProfileAction.NavigateToSignUpScreen
+            viewAction = null
         }
     }
 

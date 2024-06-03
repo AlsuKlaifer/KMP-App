@@ -10,11 +10,21 @@ internal class NewsRepositoryImpl(
 ) : NewsRepository {
 
     override suspend fun getTopHeadlines(): ResultWrapper<List<Article>> = runCatching {
-        newsService.getTopHeadlines().articles
+        newsService.getTopHeadlines().articles.filter { !it.urlToImage.isNullOrBlank() }
     }.fold(
         onFailure = { ResultWrapper.Failed(it) },
         onSuccess = { ResultWrapper.Success(it) },
     )
+
+    override suspend fun getTopHeadlinesWithCategory(category: String): ResultWrapper<List<Article>> =
+        runCatching {
+            newsService.getTopHeadlinesWithCategory(category).articles.filter {
+                !it.urlToImage.isNullOrBlank()
+            }
+        }.fold(
+            onFailure = { ResultWrapper.Failed(it) },
+            onSuccess = { ResultWrapper.Success(it) },
+        )
 
     override suspend fun getArticleByTitle(title: String): ResultWrapper<Article> = runCatching {
         val response = newsService.getArticleByTitle(title)

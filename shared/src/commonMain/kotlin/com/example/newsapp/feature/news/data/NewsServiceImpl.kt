@@ -17,6 +17,19 @@ internal class NewsServiceImpl(
             host = "newsapi.org"
 
             path("v2/top-headlines")
+            parameter("pageSize", 50)
+            parameter("country", "us")
+        }
+    }.body()
+
+    override suspend fun getTopHeadlinesWithCategory(category: String): ArticleResponse = httpClient.get {
+        url {
+            protocol = URLProtocol.HTTPS
+            host = "newsapi.org"
+
+            path("v2/top-headlines")
+            parameter("pageSize", 50)
+            parameter("category", category)
             parameter("country", "us")
         }
     }.body()

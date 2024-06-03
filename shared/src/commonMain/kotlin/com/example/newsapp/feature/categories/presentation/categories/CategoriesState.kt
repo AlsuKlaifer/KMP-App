@@ -1,4 +1,4 @@
-package com.example.newsapp.feature.categories.presentation
+package com.example.newsapp.feature.categories.presentation.categories
 
 import com.example.newsapp.feature.categories.presentation.model.CategoryUiModel
 import kotlinx.collections.immutable.PersistentList
@@ -11,7 +11,9 @@ data class CategoriesState(
 )
 
 sealed interface CategoriesAction {
+    data class NavigateToCategoryNews(val codeName: String) : CategoriesAction
 }
 
 sealed interface CategoriesEvent {
+    data class OnCategoryClick(val codeName : String) : CategoriesEvent
 }

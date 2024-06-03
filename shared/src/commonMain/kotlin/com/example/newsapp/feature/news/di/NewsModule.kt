@@ -11,6 +11,8 @@ import com.example.newsapp.feature.news.domain.usecase.GetCategoriesUseCase
 import com.example.newsapp.feature.news.domain.usecase.GetCategoriesUseCaseImpl
 import com.example.newsapp.feature.news.domain.usecase.GetTopHeadlinesUseCase
 import com.example.newsapp.feature.news.domain.usecase.GetTopHeadlinesUseCaseImpl
+import com.example.newsapp.feature.news.domain.usecase.GetTopHeadlinesWithCategoryUseCase
+import com.example.newsapp.feature.news.domain.usecase.GetTopHeadlinesWithCategoryUseCaseImpl
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -20,26 +22,33 @@ val newsModule = module {
         NewsServiceImpl(get())
     }
 
-    single<NewsRepository> {
+    factory<NewsRepository> {
         NewsRepositoryImpl(get())
     }
 
-    single<GetTopHeadlinesUseCase> {
+    factory<GetTopHeadlinesUseCase> {
         GetTopHeadlinesUseCaseImpl(
             ioDispatcher = get(named(CoroutineDispatchers.IO)),
             get()
         )
     }
 
-    single<GetArticleByTitleUseCase> {
+    factory<GetArticleByTitleUseCase> {
         GetArticleByTitleUseCaseImpl(
             ioDispatcher = get(named(CoroutineDispatchers.IO)),
             get()
         )
     }
 
-    single<GetCategoriesUseCase> {
+    factory<GetCategoriesUseCase> {
         GetCategoriesUseCaseImpl(
+            ioDispatcher = get(named(CoroutineDispatchers.IO)),
+            get()
+        )
+    }
+
+    factory<GetTopHeadlinesWithCategoryUseCase> {
+        GetTopHeadlinesWithCategoryUseCaseImpl(
             ioDispatcher = get(named(CoroutineDispatchers.IO)),
             get()
         )

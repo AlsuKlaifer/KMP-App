@@ -25,6 +25,7 @@ class DetailViewModel(
     private fun onBackClicked() {
         scope.launch {
             viewAction = DetailAction.NavigateBack
+            viewAction = null
         }
     }
 
