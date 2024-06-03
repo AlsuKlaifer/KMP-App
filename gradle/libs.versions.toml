@@ -23,7 +23,7 @@ datetime = "0.6.0-RC.2" # https://github.com/Kotlin/kotlinx-datetime
 sqlDelight = "2.0.2" # https://github.com/cashapp/sqldelight
 settings = "1.1.1" # https://github.com/russhwolf/multiplatform-settings
 ktor = "2.3.10" # https://github.com/ktorio/ktor
-koin = "3.4.0"
+koin = "3.1.4"
 buildKonfig = "0.15.1" # https://github.com/yshrsmz/BuildKonfig
 
 # androidx https://developer.android.com/jetpack/androidx/versions

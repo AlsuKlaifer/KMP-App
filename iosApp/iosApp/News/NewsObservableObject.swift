@@ -18,8 +18,8 @@ public class HomeObservableObject: ObservableObject {
 
     init(wrapped: HomeViewModel) {
         viewModel = wrapped
-        state = wrapped.state.value as! HomeState
-        (wrapped.state.asPublisher() as AnyPublisher<HomeState, Never>)
+        state = wrapped.viewStates.value
+        (wrapped.viewStates.asPublisher() as AnyPublisher<HomeState, Never>)
             .receive(on: RunLoop.main)
             .assign(to: &$state)
     }

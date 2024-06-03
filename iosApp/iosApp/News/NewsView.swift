@@ -19,7 +19,7 @@ struct NewsScreen: View {
             eventConsumer: { event in
                 viewModel.viewModel.obtainEvent(event: event)
             })
-        .onReceive(viewModel.viewModel.action.asPublisher()) { action in
+        .onReceive(viewModel.viewModel.viewActions.asPublisher()) { action in
             handleAction(action: action)
         }
     }

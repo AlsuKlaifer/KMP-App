@@ -81,6 +81,7 @@ kotlin {
         iosMain.dependencies {
             implementation(libs.ktor.client.ios)
             implementation(libs.sqldelight.native.driver)
+            implementation("co.touchlab:stately-common:2.0.5")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
