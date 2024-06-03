@@ -31,7 +31,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         return Configuration(
             platformConfiguration: platformConfiguration,
-            isDebug: false
+            isDebug: false,
+            firebaseCrashlyticsBindings: FirebaseCrashlytics()
         )
+    }
+}
+
+class FirebaseCrashlytics: FirebaseCrashlyticsBindings {
+    func logScreenEvent(event: ScreenEvent) {
+        print(event)
     }
 }
